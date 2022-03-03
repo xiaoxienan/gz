@@ -1,0 +1,185 @@
+## “#”为注释符号，删除#号该行才会生效
+# ------------------
+# 图标库：https://github.com/erdongchanyo/icon
+# ------------------
+[general]
+#wifi模式下自动直连
+running_mode_trigger=filter, filter, QWERTY:all_direct
+
+# server_check_url 
+# 对指定的网址进行相应测试，以确认节点的可用性
+server_check_url=http://www.youtube.com
+# 资源解析器
+resource_parser_url= https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/resource-parser.js
+# geo_location_checker
+# 用于节点页面的信息展示，可完整自定义
+geo_location_checker=http://ip-api.com/json/?lang=zh-CN, https://github.com/KOP-XIAO/QuantumultX/raw/master/Scripts/IP_API.js
+# dns_exclusion_list
+# list中的域名将不使用fake-ip方式, 多个域名用“, ”连接。其它域名则全部采用 fake-ip及远程解析的模式
+dns_exclusion_list = *.localnetwork.uop, *.qq.com, qq.com
+# 下列表中内容将不经过 QuantumultX 的处理
+excluded_routes=192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, 17.0.0.0/8
+icmp_auto_reply=true
+
+
+[dns]
+# DoH服务器(DNS over HTTPS)以加密的HTTPS协议进行DNS解析请求，避免原始DNS协议中用户的DNS解析请求被窃听或者修改的问题（例如中间人攻击）来达到保护用户隐私的目的
+# 设置DoH服务器后，所有其他常规DNS服务器设置将被忽略；当设置了多个DoH服务器时，只会使用第一个；当使用的 DoH服务器不是基于HTTP/2时，DoH将被暂时禁用。
+
+# DNS.SB
+;doh-server=https://doh.dns.sb/dns-query
+# IIJ DNS
+;doh-server=https://public.dns.iij.jp/dns-query
+# 红鱼DNS
+;doh-server=https://rubyfish.cn/dns-query
+# 阿里DNS
+doh-server=https://dns.alidns.com/dns-query
+
+# 常规DNS服务器
+server=119.29.29.29
+server=119.28.28.28
+server=182.254.116.116
+server=1.2.4.8
+server=223.5.5.5
+server=114.114.114.114
+server=202.141.176.93 
+server=202.141.178.13
+server=117.50.10.10
+# 制定域名解析 dns
+server=/*.taobao.com/223.5.5.5
+server=/*.tmall.com/223.5.5.5
+server=/*.alipay.com/223.5.5.5
+server=/*.aliyun.com/223.5.5.5
+server=/*.jd.com/119.28.28.28
+server=/*.qq.com/119.28.28.28
+server=/*.tencent.com/119.28.28.28
+server=/*.weixin.com/119.28.28.28
+server=/*.bilibili.com/119.29.29.29
+server=/*.netease.com/119.29.29.29
+server=/*testflight.apple.com/23.76.66.98
+
+[policy]
+## 策略组
+## 将分流规则传递过来的网络请求进行分发
+# 自动选择最优节点
+url-latency-benchmark=Auto-HK, server-tag-regex=港, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Auto.png
+# 服务器按地区分组策略
+# 美国
+static=US, server-tag-regex=美|美国|🇺🇸|US|us, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Country/US.png
+# 港
+static=HK, server-tag-regex=HK|香港|港|🇭🇰️, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Country/HK02.png
+# 日
+static= JP, server-tag-regex= 日|日本|东京|🇯🇵|JP, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Country/JP.png
+# 台湾
+static=TW, server-tag-regex=台|台湾|TW, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Country/TW02.png
+# 新
+static=SG, server-tag-regex=狮城|新|新加坡|🇸🇬|SG, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Country/SG.png
+
+# 国外媒体细分策略
+static=YouTube, US, SG, HK, TW, JP, Final, direct, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Youtube.png
+static=Spotify, US, SG, HK, TW, JP, Final, direct, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Spotify.png
+static=Netflix, US, SG, HK, TW, JP, Final, direct, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Netflix.png
+
+# 软件&服务策略
+static=Google, US, SG, HK, TW, JP, Final, direct, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Google.png
+static=Telegram, US, SG, HK, TW, JP, Final, direct, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Telegram.png
+static=Twitter, US, SG, HK, TW, JP, Final, direct, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Twitter.png
+static=Speedtest, US, SG, HK, TW, JP, Final, direct, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Speedtest.png
+static=PayPal, direct, US, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Paypal.png
+static=Apple, US, SG, HK, TW, JP, Final, direct, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Apple.png
+static=TestFlight, US, SG, HK, TW, JP, Final, direct, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/TestFlight.png
+
+# 国外连接策略
+static=Outside, US, SG, HK, TW, JP, Final, direct, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Outside.png
+
+# 国内连接策略
+static=Mainland, Final, direct, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Mainland.png
+static=Advertising, reject, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/AdBlock.png
+
+
+# 国内媒体细分策略
+static=Bilibili, HK, TW, direct, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Bilibili.png
+
+# 最终策略：如果以上的策略均未被匹配到，则听从此策略组的规定
+static=Final, Auto-HK, US, proxy, direct, img-url=https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Filter/Final01.png
+
+[filter_remote]
+## 远程分流规则订阅
+## 将网络请求进行分流，网络请求的走向(是否能成功访问)由匹配到的策略组决定
+# 部分规则有先后顺序要求，调整顺序可能失效
+# Google规则
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Google/Google.list, tag=Google规则, force-policy=Google, update-interval=86400, opt-parser=false, enabled=true
+# Youtube规则
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX//YouTube/YouTube.list, tag=YouTube 规则, force-policy=YouTube, update-interval=86400, opt-parser=false, enabled=true
+# Telegram规则
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Telegram/Telegram.list, tag=Telegram 规则, force-policy=Telegram, update-interval=86400, opt-parser=false, enabled=true
+# Paypal规则
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/PayPal/PayPal.list, tag=PayPal 规则, force-policy=PayPal, update-interval=86400, opt-parser=false, enabled=true
+# Twitter规则
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Twitter/Twitter.list, tag=Twitter规则, force-policy=Twitter, update-interval=86400, opt-parser=false, enabled=true
+# Apple规则
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Apple/Apple.list, tag=Apple 规则, force-policy=Apple, update-interval=86400, opt-parser=false, enabled=true
+# Speedtest规则
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Speedtest/Speedtest.list, tag=Speedtest 规则, force-policy=Speedtest, update-interval=86400, opt-parser=false, enabled=false
+# Netflix规则
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Netflix/Netflix.list, tag=Netflix 规则, force-policy=Netflix, update-interval=86400, opt-parser=false, enabled=false
+# 出国总规则
+https://raw.githubusercontent.com/GeQ1an/Rules/master/QuantumultX/Filter/Outside.list, tag=Outside 规则, force-policy=Outside, update-interval=86400, opt-parser=false, enabled=true
+# 国内媒体规则
+# Bilibili
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/BiliBili/BiliBili.list, tag=Bilibili, force-policy=Bilibili, update-interval=172800, opt-parser=false, enabled=true
+# 国内总规则
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/China/China.list, tag=Mainland 规则, force-policy=Mainland, update-interval=86400, opt-parser=false, enabled=true
+# 去广告规则
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Advertising/Advertising.list, tag=Advertising, force-policy=Advertising, update-interval=172800, opt-parser=false, enabled=true
+[filter_local]
+# 本地分流规则:相同规则下本地规则优先生效
+# 绕过企业证书过期
+host, ocsp.apple.com, reject
+# 其它
+host-suffix, local, direct
+# 新版抖音本地分流
+host-suffix, snssdk.com, direct
+host-suffix, amemv.com, direct
+ip-cidr, 10.0.0.0/8, direct
+ip-cidr, 17.0.0.0/8, direct
+ip-cidr, 100.64.0.0/10, direct
+ip-cidr, 127.0.0.0/8, direct
+ip-cidr, 172.16.0.0/12, direct
+ip-cidr, 192.168.0.0/16, direct
+geoip, cn, Mainland
+final, Final
+
+[server_local]
+# 本地服务器
+
+[server_remote]
+https://*********
+https://*******
+
+# 服务器引用(订阅)，支持远程订阅地址和本地文件
+[rewrite_remote]
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Rewrite/Block/YouTubeAds.conf, tag=youtube, update-interval=172800, opt-parser=false, enabled=true
+# 远程重写订阅
+# 包含主机名 hostname 以及复写 rewrite 规则
+# update-interval 为更新时间参数，单位：秒, 默认更新时间为：24*60*60=86400 秒，也就是24小时
+# opt-parser=true/false 用于控制是否对订阅开启资源解析器，不写或者 false 表示不启用解析器
+https://raw.githubusercontent.com/erdongchanyo/Rules/main/Quantumult%20X/AllinOneRewrite/edc.conf, tag=EDC-AllinOneRewrite, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rewrite/QuantumultX/Advertising/Advertising.conf, tag=Advertising(blackmatrix7, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rewrite/QuantumultX/AdvertisingScript/AdvertisingScript.conf, tag=AdvertisingScript(blackmatrix7, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/external/QuantumultX/TikTokUnlock/TikTokJP.conf, tag=TikTok Unlock(blackmatrix7, update-interval=86400, opt-parser=false, enabled=false
+https://raw.githubusercontent.com/chavyleung/scripts/master/box/rewrite/boxjs.rewrite.quanx.conf, tag=BoxJS, update-interval=86400, opt-parser=false, enabled=false
+[rewrite_local]
+# 本地重写
+
+[task_local]
+event-interaction https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/geo_location.js, tag=GeoIP查询, img-url=location.fill.viewfinder.system
+
+
+[mitm]
+passphrase = 38D04022
+p12 = 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
+# 开启 mitm，需要自行在Quantumult X中生成证书、安装、信任
+skip_validating_cert = false
+force_sni_domain_name = false
+hostname = 
